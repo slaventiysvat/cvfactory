@@ -8,11 +8,6 @@ const firebaseConfig = {
   appId: "1:363790391279:web:cf7be811b62c9db603081a"
 };
 
-// Google Drive API Configuration
-const GOOGLE_CLIENT_ID = '363790391279-7949088rgubjpoqnc2aao4evuk5ofo8u.apps.googleusercontent.com';
-const GOOGLE_SCOPES = 'https://www.googleapis.com/auth/drive.appdata';
-
-// Global variables for Firebase and Google
+// Global variables for Firebase
 let auth = null;
 let currentUser = null;
-let isGoogleApiLoaded = false;

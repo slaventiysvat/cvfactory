@@ -33,50 +33,56 @@ function handleAuthStateChanged(user) {
     }
 }
 
-// Request Google Drive access using GIS token client (popup from user gesture)
-function requestDriveAccess() {
+// Request Google Drive access by re-authenticating with Drive scopes
+async function requestDriveAccess() {
     try {
         // Check if already has token and Drive is initialized
         const existingToken = localStorage.getItem('googleAccessToken');
-        if (existingToken && typeof driveFileId !== 'undefined' && driveFileId) {
+        if (existingToken && typeof window.driveFileId !== 'undefined' && window.driveFileId) {
             console.log('Drive sync already enabled');
             alert('Drive sync is already enabled!');
             return;
         }
         
-        const client = google.accounts.oauth2.initTokenClient({
-            client_id: GOOGLE_CLIENT_ID,
-            scope: 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.appdata',
-            prompt: 'consent',
-            callback: (response) => {
-                if (response.access_token) {
-                    console.log('Drive access token received');
-                    localStorage.setItem('googleAccessToken', response.access_token);
-                    initGoogleDrive().then(() => {
-                        alert('Drive sync enabled successfully!');
-                        // Refresh UI to show enabled status
-                        if (currentUser) showUserUI(currentUser);
-                    });
-                } else {
-                    console.error('No access token received');
-                    alert('Failed to enable Drive sync. Please try again.');
-                }
-            },
-            error_callback: (error) => {
-                console.error('Drive access error:', error);
-                if (error.type === 'popup_closed') {
-                    alert('Popup was closed. Please try again and allow the popup.');
-                } else {
-                    alert('Error enabling Drive sync: ' + (error.message || 'Unknown error'));
-                }
-            }
+        console.log('Requesting Drive access through Firebase Auth...');
+        
+        // Sign out first to force re-authentication with Drive scopes
+        const currentEmail = currentUser ? currentUser.email : null;
+        
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/drive.file');
+        provider.addScope('https://www.googleapis.com/auth/drive.appdata');
+        provider.setCustomParameters({
+            prompt: 'consent' // Force consent screen to get fresh token
         });
         
-        // Important: must be called directly from a user gesture (button click)
-        client.requestAccessToken();
+        const result = await auth.signInWithPopup(provider);
+        
+        // Get Google access token from credential
+        const credential = result.credential;
+        if (credential && credential.accessToken) {
+            localStorage.setItem('googleAccessToken', credential.accessToken);
+            console.log('Drive access token saved');
+            
+            // Initialize Drive
+            await initGoogleDrive();
+            alert('Drive sync enabled successfully!');
+            
+            // Refresh UI
+            if (currentUser) showUserUI(currentUser);
+        } else {
+            console.error('No access token in credential');
+            alert('Failed to get Drive access. Please try again.');
+        }
     } catch (error) {
         console.error('Error requesting Drive access:', error);
-        alert('Error: ' + error.message);
+        if (error.code === 'auth/popup-closed-by-user') {
+            alert('Popup was closed. Please try again.');
+        } else if (error.code === 'auth/popup-blocked') {
+            alert('Popup was blocked by browser. Please allow popups for this site.');
+        } else {
+            alert('Error enabling Drive sync: ' + error.message);
+        }
     }
 }
 
@@ -144,7 +150,7 @@ function showUserUI(user) {
     
     // Check if Drive sync is enabled
     const hasToken = localStorage.getItem('googleAccessToken');
-    const driveEnabled = hasToken && typeof driveFileId !== 'undefined' && driveFileId;
+    const driveEnabled = hasToken && typeof window.driveFileId !== 'undefined' && window.driveFileId;
     
     const driveButton = driveEnabled 
         ? '<span class="drive-status" style="color: #4CAF50; font-weight: bold;">✓ Drive Sync Enabled</span>'
