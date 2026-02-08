@@ -12,6 +12,12 @@ function initializeAuth() {
         console.log('Firebase Auth initialized');
     } catch (error) {
         console.error('Error initializing Firebase:', error);
+        // Show sign-in UI even if there's an error
+        setTimeout(() => {
+            if (!currentUser) {
+                showSignInUI();
+            }
+        }, 1000);
     }
 }
 

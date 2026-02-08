@@ -433,6 +433,14 @@
     </style>
 </head>
 <body>
+    <!-- No JavaScript Fallback -->
+    <noscript>
+        <div style="text-align: center; padding: 50px; background: white; margin: 20px; border-radius: 10px;">
+            <h2>JavaScript Required</h2>
+            <p>This application requires JavaScript to be enabled. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
+    
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="loading-content">
@@ -444,7 +452,13 @@
 
     <div class="container">
         <!-- Auth Container -->
-        <div id="auth-container"></div>
+        <div id="auth-container">
+            <!-- Loading placeholder -->
+            <div class="auth-box">
+                <h2>Loading...</h2>
+                <p>Please wait while we initialize the application</p>
+            </div>
+        </div>
         
         <!-- Main Content (hidden until signed in) -->
         <div id="main-content" style="display:none;">
@@ -513,21 +527,27 @@
         </div>
     </div>
 
-    <script src="firebase-config.js?v=3"></script>
-    <script src="template-data.js?v=3"></script>
-    <script src="index-manager.js?v=3"></script>
-    <script src="auth-manager.js?v=3"></script>
-    <script src="gdrive-sync.js?v=3"></script>
+    <script src="firebase-config.js?v=4"></script>
+    <script src="template-data.js?v=4"></script>
+    <script src="index-manager.js?v=4"></script>
+    <script src="auth-manager.js?v=4"></script>
+    <script src="gdrive-sync.js?v=4"></script>
     
     <!-- Unregister old Service Worker if exists -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                for(let registration of registrations) {
-                    registration.unregister();
-                    console.log('Service Worker unregistered');
-                }
-            });
+            navigator.serviceWorker.getRegistrations()
+                .then(function(registrations) {
+                    for(let registration of registrations) {
+                        registration.unregister()
+                            .then(() => console.log('Service Worker unregistered'))
+                            .catch(err => console.log('SW unregister error (safe to ignore):', err));
+                    }
+                })
+                .catch(err => {
+                    // Silently ignore SW errors - don't block page load
+                    console.log('SW check error (safe to ignore):', err);
+                });
         }
     </script>
 </body>
