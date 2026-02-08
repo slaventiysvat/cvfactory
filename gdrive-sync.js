@@ -167,10 +167,14 @@ async function saveToDrive(resumes) {
 }
 
 // Override save functions to sync with Drive
-const originalSaveAllResumes = saveAllResumes;
+const originalSaveAllResumes = window.saveAllResumes;
 window.saveAllResumes = function(resumes) {
     // Save to localStorage immediately (cache)
-    originalSaveAllResumes(resumes);
+    if (originalSaveAllResumes) {
+        originalSaveAllResumes(resumes);
+    } else {
+        localStorage.setItem('allResumes', JSON.stringify(resumes));
+    }
     
     // Sync to Drive (async)
     if (currentUser && driveFileId) {
@@ -181,16 +185,16 @@ window.saveAllResumes = function(resumes) {
 };
 
 // Override load to sync from Drive first
-const originalLoadAllResumes = loadAllResumes;
+const originalLoadAllResumes = window.loadAllResumes;
 window.loadAllResumes = function() {
     // If user is signed in and Drive is ready, sync from Drive
-    if (currentUser && driveFileId && isGoogleApiLoaded) {
+    if (currentUser && driveFileId) {
         // Return cached data immediately, sync in background
-        const cached = originalLoadAllResumes();
-        syncFromDrive();
+        const cached = originalLoadAllResumes ? originalLoadAllResumes() : JSON.parse(localStorage.getItem('allResumes') || '[]');
+        syncFromDrive().catch(err => console.error('Background sync error:', err));
         return cached;
     }
     
     // Otherwise use localStorage
-    return originalLoadAllResumes();
+    return originalLoadAllResumes ? originalLoadAllResumes() : JSON.parse(localStorage.getItem('allResumes') || '[]');
 };
