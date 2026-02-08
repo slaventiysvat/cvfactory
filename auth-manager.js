@@ -21,11 +21,39 @@ function handleAuthStateChanged(user) {
     
     if (user) {
         console.log('User signed in:', user.email);
-        showUserUI(user);
-        // If token already exists, use it; otherwise wait for user click to request Drive access
-        const existingToken = localStorage.getItem('googleAccessToken');
-        if (existingToken) {
-            initGoogleDrive();
+        
+        // Check if we're returning from Drive access redirect
+        const pendingDriveAccess = sessionStorage.getItem('pendingDriveAccess');
+        if (pendingDriveAccess) {
+            sessionStorage.removeItem('pendingDriveAccess');
+            // Get token from Firebase user
+            user.getIdToken(true).then(token => {
+                console.log('Got fresh token after redirect');
+                // Try to get access token from last sign-in
+                const result = firebase.auth().getRedirectResult();
+                return result;
+            }).then(result => {
+                if (result && result.credential && result.credential.accessToken) {
+                    localStorage.setItem('googleAccessToken', result.credential.accessToken);
+                    console.log('Access token saved from redirect');
+                    initGoogleDrive().then(() => {
+                        alert('Drive sync enabled successfully!');
+                        showUserUI(user);
+                    });
+                } else {
+                    showUserUI(user);
+                }
+            }).catch(error => {
+                console.error('Error after redirect:', error);
+                showUserUI(user);
+            });
+        } else {
+            showUserUI(user);
+            // If token already exists, use it
+            const existingToken = localStorage.getItem('googleAccessToken');
+            if (existingToken) {
+                initGoogleDrive();
+            }
         }
     } else {
         console.log('User signed out');
@@ -33,8 +61,8 @@ function handleAuthStateChanged(user) {
     }
 }
 
-// Request Google Drive access by re-authenticating with Drive scopes
-async function requestDriveAccess() {
+// Request Google Drive access using redirect flow (more reliable than popup)
+function requestDriveAccess() {
     try {
         // Check if already has token and Drive is initialized
         const existingToken = localStorage.getItem('googleAccessToken');
@@ -44,10 +72,16 @@ async function requestDriveAccess() {
             return;
         }
         
-        console.log('Requesting Drive access through Firebase Auth...');
+        console.log('Requesting Drive access through redirect...');
         
-        // Sign out first to force re-authentication with Drive scopes
-        const currentEmail = currentUser ? currentUser.email : null;
+        // Show loading overlay
+        const loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay) {
+            loadingOverlay.classList.add('active');
+        }
+        
+        // Mark that we're requesting Drive access
+        sessionStorage.setItem('pendingDriveAccess', 'true');
         
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/drive.file');
@@ -56,33 +90,20 @@ async function requestDriveAccess() {
             prompt: 'consent' // Force consent screen to get fresh token
         });
         
-        const result = await auth.signInWithPopup(provider);
+        // Use redirect instead of popup (more reliable)
+        auth.signInWithRedirect(provider);
         
-        // Get Google access token from credential
-        const credential = result.credential;
-        if (credential && credential.accessToken) {
-            localStorage.setItem('googleAccessToken', credential.accessToken);
-            console.log('Drive access token saved');
-            
-            // Initialize Drive
-            await initGoogleDrive();
-            alert('Drive sync enabled successfully!');
-            
-            // Refresh UI
-            if (currentUser) showUserUI(currentUser);
-        } else {
-            console.error('No access token in credential');
-            alert('Failed to get Drive access. Please try again.');
-        }
     } catch (error) {
         console.error('Error requesting Drive access:', error);
-        if (error.code === 'auth/popup-closed-by-user') {
-            alert('Popup was closed. Please try again.');
-        } else if (error.code === 'auth/popup-blocked') {
-            alert('Popup was blocked by browser. Please allow popups for this site.');
-        } else {
-            alert('Error enabling Drive sync: ' + error.message);
+        sessionStorage.removeItem('pendingDriveAccess');
+        
+        // Hide loading overlay
+        const loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay) {
+            loadingOverlay.classList.remove('active');
         }
+        
+        alert('Error enabling Drive sync: ' + error.message);
     }
 }
 
@@ -90,13 +111,12 @@ async function requestDriveAccess() {
 async function signInWithGoogle() {
     try {
         const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/drive.file');
-        provider.addScope('https://www.googleapis.com/auth/drive.appdata');
+        // Don't request Drive scopes on initial sign-in, only when user clicks "Enable Drive Sync"
         
         const result = await auth.signInWithPopup(provider);
         console.log('Signed in successfully:', result.user.email);
         
-        // Get Google access token for Drive API
+        // Get Google access token for Drive API (if available)
         const credential = result.credential;
         if (credential && credential.accessToken) {
             localStorage.setItem('googleAccessToken', credential.accessToken);
@@ -124,6 +144,12 @@ async function signOut() {
 
 // Show sign-in UI
 function showSignInUI() {
+    // Hide loading overlay
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.remove('active');
+    }
+    
     const container = document.getElementById('auth-container');
     if (!container) return;
     
@@ -145,6 +171,12 @@ function showSignInUI() {
 
 // Show user UI
 function showUserUI(user) {
+    // Hide loading overlay
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.remove('active');
+    }
+    
     const container = document.getElementById('auth-container');
     if (!container) return;
     
@@ -177,6 +209,20 @@ window.addEventListener('load', () => {
         if (typeof firebase !== 'undefined') {
             clearInterval(checkFirebase);
             initializeAuth();
+            
+            // Check for redirect result (e.g., after Drive access request)
+            firebase.auth().getRedirectResult()
+                .then((result) => {
+                    if (result && result.credential && result.credential.accessToken) {
+                        console.log('Got access token from redirect result');
+                        localStorage.setItem('googleAccessToken', result.credential.accessToken);
+                    }
+                })
+                .catch((error) => {
+                    if (error.code !== 'auth/no-redirect-result') {
+                        console.error('Redirect result error:', error);
+                    }
+                });
         }
     }, 100);
 });
