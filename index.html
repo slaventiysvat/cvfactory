@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Resume Portfolio</title>
     
     <!-- Performance optimizations -->
@@ -510,18 +513,21 @@
         </div>
     </div>
 
-    <script src="firebase-config.js"></script>
-    <script src="template-data.js"></script>
-    <script src="index-manager.js"></script>
-    <script src="auth-manager.js"></script>
-    <script src="gdrive-sync.js"></script>
+    <script src="firebase-config.js?v=3"></script>
+    <script src="template-data.js?v=3"></script>
+    <script src="index-manager.js?v=3"></script>
+    <script src="auth-manager.js?v=3"></script>
+    <script src="gdrive-sync.js?v=3"></script>
     
-    <!-- Service Worker Registration for better caching -->
+    <!-- Unregister old Service Worker if exists -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/cvfactory/sw.js')
-                .then(registration => console.log('SW registered'))
-                .catch(error => console.log('SW registration failed'));
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                    console.log('Service Worker unregistered');
+                }
+            });
         }
     </script>
 </body>
