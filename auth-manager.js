@@ -1,4 +1,7 @@
 // Authentication Manager - handles Google Sign-in and Firebase Auth
+// Version: 2026-02-08-001 (REDIRECT FLOW - NO POPUPS)
+// Last updated: 2026-02-08
+console.log('auth-manager.js loaded - Version 2026-02-08-001 (REDIRECT FLOW)');
 
 // Initialize Firebase Auth
 function initializeAuth() {
@@ -71,6 +74,8 @@ function handleAuthStateChanged(user) {
 
 // Request Google Drive access using redirect flow (more reliable than popup)
 function requestDriveAccess() {
+    console.log('=== requestDriveAccess called (REDIRECT FLOW VERSION) ===');
+    
     try {
         // Check if already has token and Drive is initialized
         const existingToken = localStorage.getItem('googleAccessToken');
@@ -80,7 +85,7 @@ function requestDriveAccess() {
             return;
         }
         
-        console.log('Requesting Drive access through redirect...');
+        console.log('Requesting Drive access through REDIRECT (not popup)...');
         
         // Show loading overlay
         const loadingOverlay = document.getElementById('loading-overlay');
@@ -98,8 +103,12 @@ function requestDriveAccess() {
             prompt: 'consent' // Force consent screen to get fresh token
         });
         
+        console.log('Calling auth.signInWithRedirect() - page will redirect to Google...');
+        
         // Use redirect instead of popup (more reliable)
         auth.signInWithRedirect(provider);
+        
+        console.log('Redirect initiated...');
         
     } catch (error) {
         console.error('Error requesting Drive access:', error);
@@ -220,7 +229,9 @@ function showUserUI(user) {
 
 // Initialize when Firebase SDK is loaded
 window.addEventListener('load', () => {
+    console.log('%c=== CV Factory Loading ===', 'color: blue; font-weight: bold; font-size: 14px');
     console.log('Page loaded, checking for Firebase...');
+    console.log('If you see popup errors, clear browser cache: Ctrl+Shift+Delete');
     
     let firebaseCheckAttempts = 0;
     const maxAttempts = 50; // 5 seconds max (50 * 100ms)

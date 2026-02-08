@@ -527,11 +527,29 @@
         </div>
     </div>
 
-    <script src="firebase-config.js?v=5"></script>
-    <script src="template-data.js?v=5"></script>
-    <script src="index-manager.js?v=5"></script>
-    <script src="auth-manager.js?v=5"></script>
-    <script src="gdrive-sync.js?v=5"></script>
+    <script src="firebase-config.js?v=20260208001"></script>
+    <script src="template-data.js?v=20260208001"></script>
+    <script src="index-manager.js?v=20260208001"></script>
+    <script src="auth-manager.js?v=20260208001"></script>
+    <script src="gdrive-sync.js?v=20260208001"></script>
+    
+    <!-- Clear old cached data -->
+    <script>
+        // Remove old cached tokens/data on version update
+        const APP_VERSION = '20260208001';
+        const cachedVersion = localStorage.getItem('appVersion');
+        if (cachedVersion !== APP_VERSION) {
+            console.log('New app version detected, clearing old cache...');
+            // Keep user auth but clear other cached data
+            const googleToken = localStorage.getItem('googleAccessToken');
+            localStorage.clear();
+            if (googleToken) {
+                localStorage.setItem('googleAccessToken', googleToken);
+            }
+            localStorage.setItem('appVersion', APP_VERSION);
+            console.log('Cache cleared for new version');
+        }
+    </script>
     
     <!-- Unregister old Service Worker if exists -->
     <script>
