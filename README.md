@@ -1,21 +1,36 @@
 # Resume Portfolio - User Guide
 
+## ⚠️ IMPORTANT: Security Setup Required
+
+**Before using this application, you MUST configure API key restrictions!**
+
+Google detected that your Firebase API key is publicly accessible. This is **normal for web apps**, but security restrictions are required.
+
+### Quick Security Setup (5 minutes):
+
+1. 📖 **Read**: [SECURITY_SETUP.md](SECURITY_SETUP.md) - Step-by-step instructions
+2. 🔧 **Configure**: Add API key restrictions in Google Cloud Console
+3. ✅ **Verify**: Test that sign-in still works after restrictions
+
+**Why this is safe:** Firebase web API keys are designed to be public. Security is controlled by API restrictions and Firebase Security Rules, not by hiding the key.
+
+---
+
 ## 📋 Overview
 
-This is a static web-based resume portfolio with 4 different resume variants:
-1. **Cleaning / Hotel** - Professional cleaning services
-2. **Dental Practice** - Dental assistant and sterilization specialist
-3. **Nanny / Childcare** - Professional childcare services
-4. **Warehouse / Packing / Post** - Warehouse and logistics worker
+This is a static web-based resume portfolio with Firebase authentication and Google Drive sync:
 
-Each resume supports:
-- ✅ Bilingual content (German A2 + English)
-- ✅ Two visual themes (Clean/ATS & Elegant)
-- ✅ Language toggle (DE only / EN only / Both)
-- ✅ Optional photo display
-- ✅ QR code with contact information (vCard)
-- ✅ PDF export functionality
-- ✅ Professional, ATS-friendly design
+**Features:**
+- 🔐 Multi-user support with Google Sign-In
+- ☁️ Cloud sync via Google Drive
+- 📱 9 professional resume templates
+- 🌍 Bilingual content (German A2 + English)
+- 🎨 Multiple visual themes
+- 📥 Export/Import functionality
+- 📄 PDF generation
+- 📱 Mobile-responsive design
+
+**Live Demo:** https://slaventiysvat.github.io/cvfactory/
 
 ---
 

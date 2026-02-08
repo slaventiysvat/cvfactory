@@ -29,3 +29,11 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Backups
+backups/
+
+# NOTE: firebase-config.js is intentionally NOT in .gitignore
+# Firebase web API keys are safe to commit (they're public by design)
+# Security is handled by API restrictions and Firebase Security Rules
+# See SECURITY.md for proper configuration
