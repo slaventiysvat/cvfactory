@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Portfolio</title>
     
+    <!-- Performance optimizations -->
+    <meta name="description" content="Professional resume factory with multiple templates">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preconnect" href="https://accounts.google.com">
+    <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com">
+    
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -466,5 +472,14 @@
     <script src="index-manager.js"></script>
     <script src="auth-manager.js"></script>
     <script src="gdrive-sync.js"></script>
+    
+    <!-- Service Worker Registration for better caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/cvfactory/sw.js')
+                .then(registration => console.log('SW registered'))
+                .catch(error => console.log('SW registration failed'));
+        }
+    </script>
 </body>
 </html>
