@@ -276,7 +276,5 @@ window.addEventListener('load', () => {
             console.error('Firebase SDK failed to load after 5 seconds');
             showSignInUI();
         }
-                });
-        }
     }, 100);
 });
