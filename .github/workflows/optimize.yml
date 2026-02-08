@@ -3,7 +3,7 @@ name: Optimize for GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   deploy:
