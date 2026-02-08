@@ -25,6 +25,8 @@ function initializeAuth() {
 function handleAuthStateChanged(user) {
     currentUser = user;
     
+    console.log('Auth state changed, user:', user ? user.email : 'not signed in');
+    
     if (user) {
         console.log('User signed in:', user.email);
         
@@ -150,6 +152,8 @@ async function signOut() {
 
 // Show sign-in UI
 function showSignInUI() {
+    console.log('showSignInUI called');
+    
     // Hide loading overlay
     const loadingOverlay = document.getElementById('loading-overlay');
     if (loadingOverlay) {
@@ -157,7 +161,11 @@ function showSignInUI() {
     }
     
     const container = document.getElementById('auth-container');
-    if (!container) return;
+    console.log('Auth container found:', !!container);
+    if (!container) {
+        console.error('auth-container not found!');
+        return;
+    }
     
     container.innerHTML = `
         <div class="auth-box">
@@ -169,6 +177,8 @@ function showSignInUI() {
             </button>
         </div>
     `;
+    
+    console.log('Sign-in UI rendered');
     
     // Hide main content
     const mainContent = document.getElementById('main-content');
@@ -210,10 +220,27 @@ function showUserUI(user) {
 
 // Initialize when Firebase SDK is loaded
 window.addEventListener('load', () => {
+    console.log('Page loaded, checking for Firebase...');
+    
+    let firebaseCheckAttempts = 0;
+    const maxAttempts = 50; // 5 seconds max (50 * 100ms)
+    
+    // Fallback timeout - show sign-in UI if nothing happens in 3 seconds
+    const fallbackTimeout = setTimeout(() => {
+        console.log('Fallback timeout - showing sign-in UI');
+        if (!currentUser) {
+            showSignInUI();
+        }
+    }, 3000);
+    
     // Wait for Firebase to be available
     const checkFirebase = setInterval(() => {
+        firebaseCheckAttempts++;
+        
         if (typeof firebase !== 'undefined') {
             clearInterval(checkFirebase);
+            console.log('Firebase SDK loaded, initializing auth...');
+            
             initializeAuth();
             
             // Check for redirect result (e.g., after Drive access request)
@@ -223,11 +250,21 @@ window.addEventListener('load', () => {
                         console.log('Got access token from redirect result');
                         localStorage.setItem('googleAccessToken', result.credential.accessToken);
                     }
+                    // Clear fallback timeout since auth is working
+                    clearTimeout(fallbackTimeout);
                 })
                 .catch((error) => {
                     if (error.code !== 'auth/no-redirect-result') {
                         console.error('Redirect result error:', error);
                     }
+                    // Clear fallback timeout
+                    clearTimeout(fallbackTimeout);
+                });
+        } else if (firebaseCheckAttempts >= maxAttempts) {
+            clearInterval(checkFirebase);
+            console.error('Firebase SDK failed to load after 5 seconds');
+            showSignInUI();
+        }
                 });
         }
     }, 100);
