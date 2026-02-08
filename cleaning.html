@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Cleaning & Hotel Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toolbar (hidden in print) -->
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <button class="btn-home" onclick="window.location.href='index.html'">← Home</button>
+        </div>
+        
+        <div class="toolbar-group">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="clean">Clean / ATS</option>
+                <option value="elegant">Elegant</option>
+            </select>
+        </div>
+        
+        <div class="toolbar-group">
+            <label for="lang-select">Language:</label>
+            <select id="lang-select">
+                <option value="both">DE + EN</option>
+                <option value="de">DE only</option>
+                <option value="en">EN only</option>
+            </select>
+        </div>
+        
+        <div class="toolbar-group">
+            <button id="photo-toggle">Hide Photo</button>
+            <button id="edit-contact" class="btn-edit">✏️ Edit Contact Info</button>
+            <button id="export-pdf">💾 Save as PDF</button>
+        </div>
+    </div>
+
+    <!-- Resume Container -->
+    <div class="resume-container">
+        <div class="resume-page theme-clean lang-mode-both">
+            <!-- Header -->
+            <header class="resume-header">
+                <div class="header-left">
+                    <div class="photo-container">
+                        <img src="assets/photo-placeholder.svg" alt="Photo" class="photo">
+                    </div>
+                    <div class="header-info">
+                        <h1 id="contact-name">Your Name</h1>
+                        <div class="header-meta">
+                            <span id="contact-age">29</span> Jahre / years old • 
+                            <span id="contact-city">Vienna</span>, Austria
+                        </div>
+                        <div class="contact-info">
+                            <div>📱 <span id="contact-phone">+43 XXX XXX XXXX</span></div>
+                            <div>💬 WhatsApp: <span id="contact-whatsapp">+43 XXX XXX XXXX</span></div>
+                            <div>✉️ <span id="contact-email">email@example.com</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div id="qr-code" class="qr-code"></div>
+                </div>
+            </header>
+
+            <!-- Profile Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Profil</h2>
+                        <h2 class="lang-en">Profile</h2>
+                    </div>
+                    <button id="edit-profile-btn" class="edit-section-btn" title="Edit Profile">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <p class="profile-text lang-de">Zuverlässige und detailorientierte Reinigungsfachkraft mit umfangreicher Erfahrung in der professionellen Büro- und Hotelreinigung. Ich bin bekannt für meine Sorgfalt, Pünktlichkeit und die Fähigkeit, hohe Hygienestandards einzuhalten. Ich arbeite sowohl selbstständig als auch im Team und bin flexibel in Bezug auf Arbeitszeiten.</p>
+                </div>
+                <div class="lang-en">
+                    <p class="profile-text lang-en">Reliable and detail-oriented cleaning professional with extensive experience in professional office and hotel cleaning. Known for my thoroughness, punctuality, and ability to maintain high hygiene standards. I work independently as well as in a team and am flexible regarding working hours.</p>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Berufserfahrung</h2>
+                        <h2 class="lang-en">Work Experience</h2>
+                    </div>
+                    <button id="edit-experience-btn" class="edit-section-btn" title="Edit Experience">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <div class="experience-container">
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Hotelreinigung</h3>
+                            <span class="item-date">2024–2025 (4 Monate)</span>
+                        </div>
+                        <p class="item-description">
+                            Verantwortlich für die Reinigung von Hotelzimmern, Gemeinschaftsbereichen und sanitären Anlagen. 
+                            Sicherstellung hoher Sauberkeitsstandards, Bettwäschewechsel, Auffüllung von Verbrauchsmaterialien 
+                            und Einhaltung von Zeitplänen. Erfahrung mit verschiedenen Reinigungsmitteln und -geräten.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Büroreinigung</h3>
+                            <span class="item-date">2023–2024 (6 Monate)</span>
+                        </div>
+                        <p class="item-description">
+                            Durchführung täglicher Reinigungsarbeiten in Bürogebäuden, einschließlich Staubsaugen, 
+                            Wischen, Desinfektion von Oberflächen und Müllentsorgung. Pflege von Besprechungsräumen, 
+                            Küchen und sanitären Einrichtungen nach festgelegten Hygieneplänen.
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Sterilisationsassistentin in Zahnarztpraxis</h3>
+                            <span class="item-date">2020–2021</span>
+                        </div>
+                        <p class="item-description">
+                            Durchführung von Sterilisations- und Desinfektionsverfahren für zahnmedizinische Instrumente. 
+                            Einhaltung strenger Hygienevorschriften und Qualitätskontrollen. Diese Erfahrung hat mein 
+                            Verständnis für höchste Sauberkeits- und Hygienestandards geprägt.
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Assistentin des Direktors</h3>
+                            <span class="item-date">2018–2019</span>
+                        </div>
+                        <p class="item-description">
+                            Administrative Unterstützung der Geschäftsführung im Familienbetrieb. 
+                            Organisation von Terminen, Dokumentenverwaltung und allgemeine Büroaufgaben.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="lang-en">
+                    <div class="experience-container">
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Hotel Cleaner</h3>
+                            <span class="item-date">2024–2025 (4 months)</span>
+                        </div>
+                        <p class="item-description">
+                            Responsible for cleaning hotel rooms, common areas, and sanitary facilities. 
+                            Ensured high cleanliness standards, changed bed linens, replenished supplies, 
+                            and maintained schedules. Experience with various cleaning products and equipment.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Office Cleaner</h3>
+                            <span class="item-date">2023–2024 (6 months)</span>
+                        </div>
+                        <p class="item-description">
+                            Performed daily cleaning tasks in office buildings, including vacuuming, 
+                            mopping, surface disinfection, and waste disposal. Maintained meeting rooms, 
+                            kitchens, and sanitary facilities according to established hygiene plans.
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Sterilization Assistant in Dental Practice</h3>
+                            <span class="item-date">2020–2021</span>
+                        </div>
+                        <p class="item-description">
+                            Performed sterilization and disinfection procedures for dental instruments. 
+                            Maintained strict hygiene regulations and quality controls. This experience 
+                            shaped my understanding of the highest cleanliness and hygiene standards.
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Director's Assistant</h3>
+                            <span class="item-date">2018–2019</span>
+                        </div>
+                        <p class="item-description">
+                            Administrative support for management in family business. 
+                            Scheduling appointments, document management, and general office tasks.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <div class="lang-de">
+                    <h2>Ausbildung</h2>
+                    
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Zahnmedizinstudium (nicht abgeschlossen)</h3>
+                            <span class="item-date">2021–2023 (3 Jahre)</span>
+                        </div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Zahntechnikerin</h3>
+                            <span class="item-date">2018–2020</span>
+                        </div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Schulausbildung</h3>
+                            <span class="item-date"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang-en">
+                    <h2>Education</h2>
+                    
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Dentistry University Studies (not completed)</h3>
+                            <span class="item-date">2021–2023 (3 years)</span>
+                        </div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Dental Technician</h3>
+                            <span class="item-date">2018–2020</span>
+                        </div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>School Education</h3>
+                            <span class="item-date"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Fähigkeiten & Stärken</h2>
+                        <h2 class="lang-en">Skills & Strengths</h2>
+                    </div>
+                    <button id="edit-skills-btn" class="edit-section-btn" title="Edit Skills">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="skills-list lang-de">
+                        <li>Professionelle Reinigungstechniken für verschiedene Oberflächen</li>
+                        <li>Kenntnisse in Hygiene- und Desinfektionsstandards</li>
+                        <li>Zeitmanagement und Einhaltung von Reinigungsplänen</li>
+                        <li>Selbstständiges und gewissenhaftes Arbeiten</li>
+                        <li>Körperliche Belastbarkeit und Ausdauer</li>
+                        <li>Sorgfalt und Liebe zum Detail</li>
+                        <li>Freundlicher Umgang mit Kunden und Kollegen</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="skills-list lang-en">
+                        <li>Professional cleaning techniques for various surfaces</li>
+                        <li>Knowledge of hygiene and disinfection standards</li>
+                        <li>Time management and adherence to cleaning schedules</li>
+                        <li>Independent and conscientious work</li>
+                        <li>Physical resilience and stamina</li>
+                        <li>Attention to detail</li>
+                        <li>Friendly interaction with customers and colleagues</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Languages Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Sprachen</h2>
+                        <h2 class="lang-en">Languages</h2>
+                    </div>
+                    <button id="edit-languages-btn" class="edit-section-btn" title="Edit Languages">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="languages-list lang-de">
+                        <li>Deutsch: A2</li>
+                        <li>Englisch: Grundkenntnisse</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="languages-list lang-en">
+                        <li>German: A2</li>
+                        <li>English: Basic</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Hobbies Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Hobbys</h2>
+                        <h2 class="lang-en">Hobbies</h2>
+                    </div>
+                    <button id="edit-hobbies-btn" class="edit-section-btn" title="Edit Hobbies">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="hobbies-list lang-de">
+                        <li>Sticken</li>
+                        <li>Schießsport</li>
+                        <li>Webdesign</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="hobbies-list lang-en">
+                        <li>Embroidery</li>
+                        <li>Shooting Sport</li>
+                        <li>Web Design</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Edit Contact Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Contact Information</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <form id="contact-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="edit-name">Full Name:</label>
+                    <input type="text" id="edit-name" placeholder="e.g., Maria Schmidt" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-age">Age:</label>
+                    <input type="number" id="edit-age" placeholder="e.g., 29" min="18" max="99" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-city">City:</label>
+                    <input type="text" id="edit-city" placeholder="e.g., Vienna" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">Phone Number:</label>
+                    <input type="tel" id="edit-phone" placeholder="e.g., +43 664 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-whatsapp">WhatsApp:</label>
+                    <input type="tel" id="edit-whatsapp" placeholder="e.g., +43 664 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" placeholder="e.g., maria.schmidt@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Photo:</label>
+                    <div class="photo-controls">
+                        <label for="photo-upload" style="flex: 1;">
+                            <input type="file" id="photo-upload" accept="image/*">
+                        </label>
+                        <button type="button" class="btn-remove-photo" id="remove-photo">Remove Photo</button>
+                    </div>
+                    <div class="photo-preview-container">
+                        <img id="photo-preview" class="photo-preview" src="assets/photo-placeholder.svg" alt="Photo preview">
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-cancel" id="cancel-edit" onclick="document.getElementById('close-modal').click()">Cancel</button>
+                    <button type="button" class="btn-save" id="save-contact">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section Edit Modal -->
+    <div id="section-edit-modal" class="section-edit-modal">
+        <div class="section-modal-content">
+            <div class="section-modal-header">
+                <h2 id="section-modal-title">Edit Section</h2>
+                <button id="close-section-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="section-modal-body" id="section-form-container">
+                <!-- Dynamic form content will be inserted here -->
+            </div>
+            <div class="section-modal-footer">
+                <button type="button" class="btn-cancel" onclick="document.getElementById('close-section-modal').click()">Cancel</button>
+                <button type="button" class="btn-save" id="save-section">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

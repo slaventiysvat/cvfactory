@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Dental Practice & Sterilization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toolbar (hidden in print) -->
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <button class="btn-home" onclick="window.location.href='index.html'">← Home</button>
+        </div>
+        
+        <div class="toolbar-group">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="clean">Clean / ATS</option>
+                <option value="elegant">Elegant</option>
+            </select>
+        </div>
+        
+        <div class="toolbar-group">
+            <label for="lang-select">Language:</label>
+            <select id="lang-select">
+                <option value="both">DE + EN</option>
+                <option value="de">DE only</option>
+                <option value="en">EN only</option>
+            </select>
+        </div>
+        
+        <div class="toolbar-group">
+            <button id="photo-toggle">Hide Photo</button>
+            <button id="edit-contact" class="btn-edit">✏️ Edit Contact Info</button>
+            <button id="export-pdf">💾 Save as PDF</button>
+        </div>
+    </div>
+
+    <!-- Resume Container -->
+    <div class="resume-container">
+        <div class="resume-page theme-clean lang-mode-both">
+            <!-- Header -->
+            <header class="resume-header">
+                <div class="header-left">
+                    <div class="photo-container">
+                        <img src="assets/photo-placeholder.svg" alt="Photo" class="photo">
+                    </div>
+                    <div class="header-info">
+                        <h1 id="contact-name">Your Name</h1>
+                        <div class="header-meta">
+                            <span id="contact-age">29</span> Jahre / years old • 
+                            <span id="contact-city">Vienna</span>, Austria
+                        </div>
+                        <div class="contact-info">
+                            <div>📱 <span id="contact-phone">+43 XXX XXX XXXX</span></div>
+                            <div>💬 WhatsApp: <span id="contact-whatsapp">+43 XXX XXX XXXX</span></div>
+                            <div>✉️ <span id="contact-email">email@example.com</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div id="qr-code" class="qr-code"></div>
+                </div>
+            </header>
+
+            <!-- Profile Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Profil</h2>
+                        <h2 class="lang-en">Profile</h2>
+                    </div>
+                    <button id="edit-profile-btn" class="edit-section-btn" title="Edit Profile">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <p class="profile-text lang-de">Qualifizierte Fachkraft mit zahnmedizinischem Hintergrund und praktischer Erfahrung als Sterilisationsassistentin. Ausgebildete Zahntechnikerin mit drei Jahren Zahnmedizinstudium. Spezialisiert auf Sterilisation, Desinfektion und Einhaltung höchster Hygienestandards. Detailorientiert, zuverlässig und mit ausgeprägtem Verständnis für zahnmedizinische Prozesse und Patientensicherheit.</p>
+                </div>
+                <div class="lang-en">
+                    <p class="profile-text lang-en">Qualified professional with dental background and practical experience as a sterilization assistant. Trained dental technician with three years of dentistry university studies. Specialized in sterilization, disinfection, and maintaining the highest hygiene standards. Detail-oriented, reliable, and with strong understanding of dental processes and patient safety.</p>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Berufserfahrung</h2>
+                        <h2 class="lang-en">Work Experience</h2>
+                    </div>
+                    <button id="edit-experience-btn" class="edit-section-btn" title="Edit Experience">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <div class="experience-container">
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Sterilisationsassistentin in Zahnarztpraxis</h3>
+                            <span class="item-date">2020–2021</span>
+                        </div>
+                        <p class="item-description">
+                            • Professionelle Aufbereitung und Sterilisation zahnmedizinischer Instrumente<br>
+                            • Bedienung von Autoklaven und Desinfektionsgeräten<br>
+                            • Dokumentation und Qualitätskontrolle der Sterilisationsprozesse<br>
+                            • Einhaltung gesetzlicher Hygienevorschriften und RKI-Richtlinien<br>
+                            • Instrumentenpflege und -wartung<br>
+                            • Materialbeschaffung und Lagerverwaltung<br>
+                            • Unterstützung bei der Vorbereitung von Behandlungsräumen
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Assistentin des Direktors</h3>
+                            <span class="item-date">2018–2019</span>
+                        </div>
+                        <p class="item-description">
+                            Administrative Unterstützung der Geschäftsführung im Familienbetrieb. 
+                            Terminplanung, Korrespondenz, Dokumentenverwaltung und allgemeine Büroorganisation. 
+                            Entwicklung von organisatorischen Fähigkeiten und Verständnis für betriebliche Abläufe.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lang-en">
+                    <h2>Work Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Sterilization Assistant in Dental Practice</h3>
+                            <span class="item-date">2020–2021</span>
+                        </div>
+                        <p class="item-description">
+                            • Professional reprocessing and sterilization of dental instruments<br>
+                            • Operation of autoclaves and disinfection equipment<br>
+                            • Documentation and quality control of sterilization processes<br>
+                            • Compliance with legal hygiene regulations and guidelines<br>
+                            • Instrument care and maintenance<br>
+                            • Material procurement and inventory management<br>
+                            • Support in preparing treatment rooms
+                        </p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <h3>Director's Assistant</h3>
+                            <span class="item-date">2018–2019</span>
+                        </div>
+                        <p class="item-description">
+                            Administrative support for management in family business. 
+                            Appointment scheduling, correspondence, document management, and general office organization. 
+                            Developed organizational skills and understanding of business processes.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="lang-en">
+                    <div class="experience-container">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <div class="lang-de">
+                    <h2>Ausbildung</h2>
+                    
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Zahnmedizinstudium (nicht abgeschlossen)</h3>
+                            <span class="item-date">2021–2023 (3 Jahre)</span>
+                        </div>
+                        <p class="item-description">
+                            Vertiefte theoretische und praktische Kenntnisse in Zahnmedizin, 
+                            Anatomie, Pathologie und Patientenversorgung.
+                        </p>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Zahntechnikerin</h3>
+                            <span class="item-date">2018–2020</span>
+                        </div>
+                        <p class="item-description">
+                            Abgeschlossene Ausbildung zur Zahntechnikerin. Kenntnisse in Herstellung und 
+                            Reparatur von Zahnersatz, Kronen, Brücken und Prothesen.
+                        </p>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Schulausbildung</h3>
+                            <span class="item-date"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang-en">
+                    <h2>Education</h2>
+                    
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Dentistry University Studies (not completed)</h3>
+                            <span class="item-date">2021–2023 (3 years)</span>
+                        </div>
+                        <p class="item-description">
+                            In-depth theoretical and practical knowledge in dentistry, 
+                            anatomy, pathology, and patient care.
+                        </p>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>Dental Technician</h3>
+                            <span class="item-date">2018–2020</span>
+                        </div>
+                        <p class="item-description">
+                            Completed training as dental technician. Knowledge in manufacturing and 
+                            repair of dental prosthetics, crowns, bridges, and dentures.
+                        </p>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <h3>School Education</h3>
+                            <span class="item-date"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Fachliche Kompetenzen</h2>
+                        <h2 class="lang-en">Professional Skills</h2>
+                    </div>
+                    <button id="edit-skills-btn" class="edit-section-btn" title="Edit Skills">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="skills-list lang-de">
+                        <li>Sterilisation und Desinfektion nach medizinischen Standards</li>
+                        <li>Bedienung von Autoklaven und Sterilisationsgeräten</li>
+                        <li>Kenntnisse der RKI-Richtlinien und Hygienevorschriften</li>
+                        <li>Instrumentenaufbereitung und -pflege</li>
+                        <li>Qualitätskontrolle und Dokumentation</li>
+                        <li>Zahnmedizinische Grundkenntnisse</li>
+                        <li>Umgang mit medizinischen Materialien</li>
+                        <li>Sorgfalt und Präzision</li>
+                        <li>Teamfähigkeit in medizinischem Umfeld</li>
+                        <li>Verantwortungsbewusstsein und Zuverlässigkeit</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="skills-list lang-en">
+                        <li>Sterilization and disinfection according to medical standards</li>
+                        <li>Operation of autoclaves and sterilization equipment</li>
+                        <li>Knowledge of hygiene regulations and guidelines</li>
+                        <li>Instrument reprocessing and maintenance</li>
+                        <li>Quality control and documentation</li>
+                        <li>Basic dental knowledge</li>
+                        <li>Handling of medical materials</li>
+                        <li>Attention to detail and precision</li>
+                        <li>Teamwork in medical environment</li>
+                        <li>Sense of responsibility and reliability</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Languages Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Sprachen</h2>
+                        <h2 class="lang-en">Languages</h2>
+                    </div>
+                    <button id="edit-languages-btn" class="edit-section-btn" title="Edit Languages">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="languages-list lang-de">
+                        <li>Deutsch: A2</li>
+                        <li>Englisch: Grundkenntnisse</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="languages-list lang-en">
+                        <li>German: A2</li>
+                        <li>English: Basic</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Hobbies Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="lang-de">Hobbys</h2>
+                        <h2 class="lang-en">Hobbies</h2>
+                    </div>
+                    <button id="edit-hobbies-btn" class="edit-section-btn" title="Edit Hobbies">✏️</button>
+                </div>
+                <div class="lang-de">
+                    <ul class="hobbies-list lang-de">
+                        <li>Sticken</li>
+                        <li>Schießsport</li>
+                        <li>Webdesign</li>
+                    </ul>
+                </div>
+
+                <div class="lang-en">
+                    <ul class="hobbies-list lang-en">
+                        <li>Embroidery</li>
+                        <li>Shooting Sport</li>
+                        <li>Web Design</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Edit Contact Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Contact Information</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <form id="contact-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="edit-name">Full Name:</label>
+                    <input type="text" id="edit-name" placeholder="e.g., Maria Schmidt" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-age">Age:</label>
+                    <input type="number" id="edit-age" placeholder="e.g., 29" min="18" max="99" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-city">City:</label>
+                    <input type="text" id="edit-city" placeholder="e.g., Vienna" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">Phone Number:</label>
+                    <input type="tel" id="edit-phone" placeholder="e.g., +43 664 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-whatsapp">WhatsApp:</label>
+                    <input type="tel" id="edit-whatsapp" placeholder="e.g., +43 664 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" placeholder="e.g., maria.schmidt@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Photo:</label>
+                    <div class="photo-controls">
+                        <label for="photo-upload" style="flex: 1;">
+                            <input type="file" id="photo-upload" accept="image/*">
+                        </label>
+                        <button type="button" class="btn-remove-photo" id="remove-photo">Remove Photo</button>
+                    </div>
+                    <div class="photo-preview-container">
+                        <img id="photo-preview" class="photo-preview" src="assets/photo-placeholder.svg" alt="Photo preview">
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-cancel" id="cancel-edit" onclick="document.getElementById('close-modal').click()">Cancel</button>
+                    <button type="button" class="btn-save" id="save-contact">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section Edit Modal -->
+    <div id="section-edit-modal" class="section-edit-modal">
+        <div class="section-modal-content">
+            <div class="section-modal-header">
+                <h2 id="section-modal-title">Edit Section</h2>
+                <button id="close-section-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="section-modal-body" id="section-form-container">
+                <!-- Dynamic form content will be inserted here -->
+            </div>
+            <div class="section-modal-footer">
+                <button type="button" class="btn-cancel" onclick="document.getElementById('close-section-modal').click()">Cancel</button>
+                <button type="button" class="btn-save" id="save-section">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

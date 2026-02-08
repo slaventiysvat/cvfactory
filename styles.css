@@ -1,0 +1,1038 @@
+/* ============================================
+   GENERAL STYLES
+   ============================================ */
+:root {
+    /* Clean/ATS Theme */
+    --clean-bg: #ffffff;
+    --clean-text: #000000;
+    --clean-heading: #000000;
+    --clean-border: #cccccc;
+    --clean-accent: #333333;
+    
+    /* Elegant Theme */
+    --elegant-bg: #fafafa;
+    --elegant-text: #2c3e50;
+    --elegant-heading: #1a252f;
+    --elegant-border: #d4d4d4;
+    --elegant-accent: #3498db;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f5f5f5;
+}
+
+/* ============================================
+   TOOLBAR (hidden in print)
+   ============================================ */
+.toolbar {
+    background: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.toolbar-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.toolbar label {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.toolbar button,
+.toolbar select {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.toolbar button {
+    background: #3498db;
+    color: white;
+}
+
+.toolbar button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.toolbar select {
+    background: white;
+    color: #2c3e50;
+    border: 2px solid #3498db;
+}
+
+.btn-home {
+    background: #95a5a6 !important;
+}
+
+.btn-home:hover {
+    background: #7f8c8d !important;
+}
+
+/* ============================================
+   RESUME CONTAINER
+   ============================================ */
+.resume-container {
+    max-width: 210mm;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.resume-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    background: white;
+}
+
+/* ============================================
+   CLEAN/ATS THEME
+   ============================================ */
+.resume-page.theme-clean {
+    background: var(--clean-bg);
+    color: var(--clean-text);
+    font-family: 'Arial', sans-serif;
+}
+
+.theme-clean .resume-header {
+    border-bottom: 2px solid var(--clean-border);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.theme-clean h1 {
+    color: var(--clean-heading);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.theme-clean h2 {
+    color: var(--clean-heading);
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--clean-border);
+    padding-bottom: 5px;
+}
+
+.theme-clean h3 {
+    color: var(--clean-heading);
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* ============================================
+   ELEGANT THEME
+   ============================================ */
+.resume-page.theme-elegant {
+    background: var(--elegant-bg);
+    color: var(--elegant-text);
+    font-family: 'Georgia', serif;
+}
+
+.theme-elegant .resume-header {
+    border-bottom: 3px solid var(--elegant-accent);
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.05), transparent);
+    padding-top: 10px;
+}
+
+.theme-elegant h1 {
+    color: var(--elegant-heading);
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.theme-elegant h2 {
+    color: var(--elegant-accent);
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--elegant-accent);
+    padding-left: 12px;
+}
+
+.theme-elegant h3 {
+    color: var(--elegant-heading);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* ============================================
+   HEADER LAYOUT
+   ============================================ */
+.resume-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+}
+
+.header-left {
+    display: flex;
+    gap: 20px;
+    align-items: start;
+}
+
+.photo-container {
+    flex-shrink: 0;
+}
+
+.photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+.theme-elegant .photo {
+    border-radius: 50%;
+    border: 3px solid var(--elegant-accent);
+}
+
+.header-info h1 {
+    margin-bottom: 8px;
+}
+
+.header-meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.contact-info {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.contact-info div {
+    margin-bottom: 3px;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.qr-code {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background: white;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.section {
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.section-header > div h2 {
+    margin: 0;
+}
+
+.edit-section-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+    flex-shrink: 0;
+}
+
+.edit-section-btn:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+textarea.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    min-height: 120px;
+    resize: vertical;
+}
+
+textarea.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Section Edit Modal */
+.section-edit-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.section-edit-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+}
+
+.section-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.section-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.section-modal-body {
+    margin-bottom: 1.5rem;
+}
+
+.section-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Experience item editing form */
+.experience-item-form {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: #f9f9f9;
+}
+
+.experience-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #007bff;
+}
+
+.experience-item-header h4 {
+    margin: 0;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+.btn-remove-item {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-remove-item:hover {
+    background: #c82333;
+}
+
+.btn-add-experience {
+    width: 100%;
+    padding: 0.75rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1rem;
+}
+
+.btn-add-experience:hover {
+    background: #218838;
+}
+
+.experience-item-form input,
+.experience-item-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.experience-item-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.experience-item-form input:focus,
+.experience-item-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.experience-item,
+.education-item {
+    margin-bottom: 15px;
+    page-break-inside: avoid;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.item-date {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+}
+
+.item-description {
+    font-size: 13px;
+    color: #555;
+    margin-top: 3px;
+}
+
+.skills-list,
+.languages-list,
+.hobbies-list {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.skills-list ul,
+.languages-list ul,
+.hobbies-list ul {
+    list-style-position: inside;
+    margin-left: 10px;
+}
+
+/* ============================================
+   LANGUAGE VISIBILITY
+   ============================================ */
+.lang-de,
+.lang-en {
+    display: block;
+}
+
+.lang-mode-de .lang-en {
+    display: none;
+}
+
+.lang-mode-en .lang-de {
+    display: none;
+}
+
+.lang-mode-both .lang-de {
+    display: block;
+}
+
+.lang-mode-both .lang-en {
+    display: block;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+}
+
+/* ============================================
+   PHOTO VISIBILITY
+   ============================================ */
+.photo-hidden .photo-container {
+    display: none;
+}
+
+/* ============================================
+   EDIT MODAL
+   ============================================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+    border: 2px dashed #3498db;
+    cursor: pointer;
+}
+
+.photo-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.photo-preview {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    display: none;
+    margin: 10px auto;
+}
+
+.photo-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.photo-controls label {
+    flex: 1;
+    min-width: 200px;
+}
+
+.btn-remove-photo {
+    padding: 8px 16px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-remove-photo:hover {
+    background: #c0392b;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    border: 2px solid #95a5a6;
+    background: white;
+    color: #7f8c8d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-save {
+    padding: 10px 20px;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-save:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background: #27ae60 !important;
+}
+
+.btn-edit:hover {
+    background: #229954 !important;
+}
+
+.section-content {
+    margin-top: 10px;
+}
+
+textarea.form-control {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+textarea.form-control:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .toolbar {
+        display: none !important;
+    }
+    
+    .modal {
+        display: none !important;
+    }
+    
+    .edit-section-btn {
+        display: none !important;
+    }
+    
+    .resume-container {
+        margin: 0;
+        box-shadow: none;
+        max-width: 100%;
+    }
+    
+    .resume-page {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 15mm;
+        page-break-after: always;
+        box-shadow: none;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+    }
+    
+    h2 {
+        page-break-after: avoid;
+    }
+    
+    .experience-item,
+    .education-item {
+        page-break-inside: avoid;
+    }
+    
+    /* Ensure QR code prints well */
+    .qr-code {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    /* Ensure theme colors print */
+    .theme-elegant .resume-header {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    /* Hide edit buttons in print */
+    .edit-section-btn {
+        display: none !important;
+    }
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE (iPhone & Android)
+   ============================================ */
+
+/* Touch-friendly buttons and controls */
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .toolbar-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .toolbar button,
+    .toolbar select {
+        min-height: 44px; /* Apple touch target guideline */
+        min-width: 44px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .btn-home {
+        order: -1;
+        width: 100%;
+    }
+    
+    /* Resume container for mobile */
+    .resume-container {
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .resume-page {
+        padding: 20px 15px;
+        min-height: auto;
+    }
+    
+    /* Header responsive */
+    .resume-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .header-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .photo-container {
+        margin-bottom: 15px;
+    }
+    
+    .header-right {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .qr-code {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Section headers */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .edit-section-btn {
+        align-self: flex-end;
+        min-height: 44px;
+        min-width: 44px;
+        font-size: 18px;
+    }
+    
+    /* Modals for mobile */
+    .modal-content,
+    .section-modal-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 20px;
+        border-radius: 15px;
+        max-height: 85vh;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: 44px;
+        padding: 12px;
+    }
+    
+    .form-group textarea {
+        min-height: 100px;
+    }
+    
+    /* Experience form for mobile */
+    .experience-item-form {
+        padding: 15px;
+    }
+    
+    .experience-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .btn-remove-item {
+        align-self: flex-end;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .btn-add-experience {
+        min-height: 44px;
+        font-size: 16px;
+    }
+    
+    /* Photo upload */
+    .photo-preview {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    /* Modal buttons */
+    .modal-buttons,
+    .section-modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-save,
+    .btn-cancel {
+        width: 100%;
+        min-height: 44px;
+    }
+    
+    /* Lists */
+    .skills-list,
+    .languages-list,
+    .hobbies-list {
+        padding-left: 25px;
+    }
+    
+    /* Experience items */
+    .experience-item,
+    .education-item {
+        margin-bottom: 20px;
+    }
+    
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* Small phones (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .resume-page {
+        padding: 15px 10px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+    
+    .qr-code {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .photo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .resume-container {
+        padding: 20px;
+    }
+    
+    .toolbar {
+        padding: 15px 20px;
+    }
+    
+    .modal-content,
+    .section-modal-content {
+        max-width: 600px;
+    }
+}
+
+/* Touch improvements for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets */
+    button,
+    select,
+    input[type="file"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .card:hover {
+        transform: none;
+    }
+    
+    /* Click feedback */
+    .card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s;
+    }
+    
+    button:active {
+        opacity: 0.7;
+    }
+    
+    /* Better scrolling */
+    .modal-content,
+    .section-modal-content {
+        -webkit-overflow-scrolling: touch;
+    }
+}

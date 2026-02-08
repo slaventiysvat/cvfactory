@@ -1,0 +1,34 @@
+[
+  {
+    "id": "legacy-cleaning",
+    "name": "Cleaning / Hotel",
+    "emoji": "🧹",
+    "template": "cleaning-hotel",
+    "legacyFile": "cleaning.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-dental",
+    "name": "Dental Practice",
+    "emoji": "🦷",
+    "template": "dental-practice",
+    "legacyFile": "dental.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-nanny",
+    "name": "Nanny / Childcare",
+    "emoji": "👶",
+    "template": "nanny-childcare",
+    "legacyFile": "nanny.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-warehouse",
+    "name": "Warehouse / Packing / Post",
+    "emoji": "📦",
+    "template": "warehouse-packing",
+    "legacyFile": "warehouse.html",
+    "isLegacy": true
+  }
+]

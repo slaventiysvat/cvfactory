@@ -1,0 +1,70 @@
+[
+  {
+    "id": "legacy-cleaning",
+    "name": "Cleaning / Hotel",
+    "emoji": "🧹",
+    "template": "cleaning-hotel",
+    "legacyFile": "cleaning.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-dental",
+    "name": "Dental Practice",
+    "emoji": "🦷",
+    "template": "dental-practice",
+    "legacyFile": "dental.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-nanny",
+    "name": "Nanny / Childcare",
+    "emoji": "👶",
+    "template": "nanny-childcare",
+    "legacyFile": "nanny.html",
+    "isLegacy": true
+  },
+  {
+    "id": "legacy-warehouse",
+    "name": "Warehouse / Packing / Post",
+    "emoji": "📦",
+    "template": "warehouse-packing",
+    "legacyFile": "warehouse.html",
+    "isLegacy": true
+  },
+  {
+    "id": "resume-1769640175739",
+    "name": "Warehouse/Packing/Post",
+    "emoji": "📦",
+    "template": "warehouse-packing",
+    "theme": "theme-clean",
+    "langMode": "lang-mode-both",
+    "photoVisible": true,
+    "contact": {
+      "name": "Your Name",
+      "age": "",
+      "city": "",
+      "phone": "",
+      "whatsapp": "",
+      "email": ""
+    },
+    "sections": {
+      "profile": {
+        "de": "",
+        "en": ""
+      },
+      "experience_items": [],
+      "skills": {
+        "de": [],
+        "en": []
+      },
+      "languages": {
+        "de": [],
+        "en": []
+      },
+      "hobbies": {
+        "de": [],
+        "en": []
+      }
+    }
+  }
+]
