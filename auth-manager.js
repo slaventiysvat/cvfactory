@@ -36,6 +36,14 @@ function handleAuthStateChanged(user) {
 // Request Google Drive access using GIS token client (popup from user gesture)
 function requestDriveAccess() {
     try {
+        // Check if already has token and Drive is initialized
+        const existingToken = localStorage.getItem('googleAccessToken');
+        if (existingToken && typeof driveFileId !== 'undefined' && driveFileId) {
+            console.log('Drive sync already enabled');
+            alert('Drive sync is already enabled!');
+            return;
+        }
+        
         const client = google.accounts.oauth2.initTokenClient({
             client_id: GOOGLE_CLIENT_ID,
             scope: 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.appdata',
@@ -44,14 +52,23 @@ function requestDriveAccess() {
                 if (response.access_token) {
                     console.log('Drive access token received');
                     localStorage.setItem('googleAccessToken', response.access_token);
-                    initGoogleDrive();
+                    initGoogleDrive().then(() => {
+                        alert('Drive sync enabled successfully!');
+                        // Refresh UI to show enabled status
+                        if (currentUser) showUserUI(currentUser);
+                    });
                 } else {
                     console.error('No access token received');
+                    alert('Failed to enable Drive sync. Please try again.');
                 }
             },
             error_callback: (error) => {
                 console.error('Drive access error:', error);
-                console.log('Continuing without Drive sync');
+                if (error.type === 'popup_closed') {
+                    alert('Popup was closed. Please try again and allow the popup.');
+                } else {
+                    alert('Error enabling Drive sync: ' + (error.message || 'Unknown error'));
+                }
             }
         });
         
@@ -59,7 +76,7 @@ function requestDriveAccess() {
         client.requestAccessToken();
     } catch (error) {
         console.error('Error requesting Drive access:', error);
-        console.log('Continuing without Drive sync');
+        alert('Error: ' + error.message);
     }
 }
 
@@ -125,11 +142,19 @@ function showUserUI(user) {
     const container = document.getElementById('auth-container');
     if (!container) return;
     
+    // Check if Drive sync is enabled
+    const hasToken = localStorage.getItem('googleAccessToken');
+    const driveEnabled = hasToken && typeof driveFileId !== 'undefined' && driveFileId;
+    
+    const driveButton = driveEnabled 
+        ? '<span class="drive-status" style="color: #4CAF50; font-weight: bold;">✓ Drive Sync Enabled</span>'
+        : '<button class="btn-drive" onclick="requestDriveAccess()">Enable Drive Sync</button>';
+    
     container.innerHTML = `
         <div class="user-info">
             <img src="${user.photoURL || 'https://via.placeholder.com/40'}" alt="Profile" class="user-avatar">
             <span class="user-email">${user.email}</span>
-            <button class="btn-drive" onclick="requestDriveAccess()">Enable Drive Sync</button>
+            ${driveButton}
             <button class="btn-signout" onclick="signOut()">Sign Out</button>
         </div>
     `;

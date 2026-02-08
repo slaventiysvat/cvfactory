@@ -3,6 +3,7 @@
 
 const DRIVE_FILE_NAME = 'cv-factory-resumes.json';
 let driveFileId = null;
+window.driveFileId = null; // Make it globally accessible for UI updates
 
 // Initialize Google Drive API
 async function initGoogleDrive() {
@@ -20,6 +21,11 @@ async function initGoogleDrive() {
         await syncFromDrive();
         
         console.log('Google Drive initialized');
+        
+        // Update UI to show Drive is enabled
+        if (typeof currentUser !== 'undefined' && currentUser) {
+            showUserUI(currentUser);
+        }
     } catch (error) {
         console.error('Error initializing Google Drive:', error);
         console.log('Continuing without Drive sync - data will be local only');
@@ -47,6 +53,7 @@ async function initDriveFile() {
         
         if (searchData.files && searchData.files.length > 0) {
             driveFileId = searchData.files[0].id;
+            window.driveFileId = driveFileId; // Update global reference
             console.log('Found existing Drive file:', driveFileId);
         } else {
             // Create new file
@@ -70,6 +77,7 @@ async function initDriveFile() {
             
             const createData = await createResponse.json();
             driveFileId = createData.id;
+            window.driveFileId = driveFileId; // Update global reference
             console.log('Created new Drive file:', driveFileId);
             
             // Initialize with empty array
